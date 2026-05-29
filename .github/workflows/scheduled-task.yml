@@ -1,0 +1,20 @@
+name: Scheduled Task
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run scheduled task
+        shell: pwsh
+        run: ./scripts/scheduled-task.ps1
